@@ -105,7 +105,7 @@ class App extends React.Component {
 
             for(let i = 0; i < updateData.length; i++)
             {
-                if (updateData[i].id === data.id)
+                if (Number(updateData[i].id) === Number(data.id))
                 {
                     foundIndex = i;  //get the index of the updated data item in the state's data array
                     break;
@@ -137,7 +137,7 @@ class App extends React.Component {
 
         fetch(url, requestOptions).then((res) => res.json()).then((data) => {  //data is an empty Object
             let deleteData = this.state.data.filter((val, id, arr) => {
-                return val.id !== deletePerson.id;  //take out the deleted person from the data array
+                return Number(val.id) !== Number(deletePerson.id);  //take out the deleted person from the data array
             });
 
             document.forms[0].names.value = "";  //set dropdown back to default (N/A)
@@ -164,7 +164,6 @@ class App extends React.Component {
                 <h1>Homework 1 - Stephen Policelli</h1>
                 <Person 
                     value={{person: this.state.currentPerson, update: this.state.setCurrentPerson}}
-                    onChange={(e) => {this.handlePersonChange(e)}}
                 />
                 <form>
                     <label htmlFor="names" id="names"></label>
