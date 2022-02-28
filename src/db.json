@@ -22,25 +22,25 @@
       "name": "Sai Patel",
       "idVal": "524",
       "points": "94",
-      "id": "524"
+      "id": 524
     },
     {
       "name": "Andrew Whitehead",
       "idVal": "425",
       "points": "99",
-      "id": "425"
+      "id": 425
     },
     {
       "name": "Lynn Roberts",
       "idVal": "626",
       "points": "90",
-      "id": "626"
+      "id": 626
     },
     {
       "name": "Robert Sanders",
       "idVal": "287",
       "points": "75",
-      "id": "287"
+      "id": 287
     }
   ]
 }
