@@ -42,11 +42,12 @@ class App extends React.Component {
 
     getPerson() {
         let index = -1;
-        let target = document.forms[0].names.value;  //selected name in the dropdown
+        let target = Number(document.forms[0].names.value);  //selected name in the dropdown
+        console.log(target);
         
         for(let i = 0; i < this.state.data.length; i++)
         {
-            if (this.state.data[i].id === target)
+            if (Number(this.state.data[i].id) === target)
             {
                 index = i;
                 break;
@@ -118,7 +119,7 @@ class App extends React.Component {
                 document.forms[0].names.value = data.name;  //update the dropdown's selected name to select the updated name
             }
             else
-                this.setState({error: "Update Person mysteriously failed."});   
+                this.setState({error: "Update Person failed. No person found with that ID."});   
         },
         (error) => {
             this.setState({error: "Update Person failed. " + error});
