@@ -21,8 +21,8 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [{name: "", idVal: "", points: ""}],
-            currentPerson: {name: "", idVal: "", points: ""},  //idVal: json-server makes the "id" property immutable, so to change ID it's gotta be something different
+            data: [{name: "", idVal: "", points: "", id: ""}],
+            currentPerson: {name: "", idVal: "", points: "", id: ""},  //idVal: json-server makes the "id" property immutable, so to change ID it's gotta be something different
             setCurrentPerson: (p) => {this.setState({currentPerson: p});},
             error: ""
         }
@@ -57,7 +57,7 @@ class App extends React.Component {
         let found = {};
 
         if (index < 0)
-            found = {name: "", idVal: "", points: ""};  //if not found, fallback on empty person
+            found = {name: "", idVal: "", points: "", id: ""};  //if not found, fallback on empty person
         else
             found = Object.assign({}, this.state.data[index]);  //if found, supply the data
 
@@ -83,7 +83,7 @@ class App extends React.Component {
 
             this.setState({data: newData, currentPerson: data, error: ""});  //update state
 
-            document.forms[0].names.value = data.name;  //make sure the dropdown in the form is selecting the new item
+            document.forms[0].names.value = data.id;  //make sure the dropdown in the form is selecting the new item
         },
         (error) => {
             this.setState({error: "Create Person failed. " + error})
@@ -116,7 +116,7 @@ class App extends React.Component {
             {
                 updateData[foundIndex] = data;  //update the data's fields
                 this.setState({data: updateData, error: ""});  //update the state
-                document.forms[0].names.value = data.name;  //update the dropdown's selected name to select the updated name
+                document.forms[0].names.value = data.id;  //update the dropdown's selected name to select the updated name
             }
             else
                 this.setState({error: "Update Person failed. No person found with that ID."});   
@@ -142,7 +142,7 @@ class App extends React.Component {
 
             document.forms[0].names.value = "";  //set dropdown back to default (N/A)
 
-            this.setState({data: deleteData, currentPerson: {name: "", idVal: "", points: ""}, error: ""});  //update state, unsetting the current person
+            this.setState({data: deleteData, currentPerson: {name: "", idVal: "", points: "", id: ""}, error: ""});  //update state, unsetting the current person
         },
         (error) => {
             this.setState({error: "Delete Person failed. " + error});
