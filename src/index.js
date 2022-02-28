@@ -21,8 +21,8 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [{name: "", idVal: "", points: "", id: ""}],
-            currentPerson: {name: "", idVal: "", points: "", id: ""},  //idVal: json-server makes the "id" property immutable, so to change ID it's gotta be something different
+            data: [{name: "", idVal: "", points: "", id: "-1"}],
+            currentPerson: {name: "", idVal: "", points: "", id: "-1"},  //idVal: json-server makes the "id" property immutable, so to change ID it's gotta be something different
             setCurrentPerson: (p) => {this.setState({currentPerson: p});},
             error: ""
         }
@@ -59,8 +59,9 @@ class App extends React.Component {
 
         if (index < 0)
         {
-            found = {name: "", idVal: "", points: "", id: ""};  //if not found, fallback on empty person
-            errMsg = "Warning: Person not found.";
+            found = {name: "", idVal: "", points: "", id: "-1"};  //if not found, fallback on empty person
+            if (target !== -1)
+                errMsg = "Warning: Person not found.";
         }
         else
             found = Object.assign({}, this.state.data[index]);  //if found, supply the data
@@ -132,9 +133,6 @@ class App extends React.Component {
 
     deletePerson()
     {
-        if (this.state.currentPerson.id == "")
-            this.getPerson();
-
         let deletePerson = this.state.currentPerson;
         let url = "http://localhost:3000/people/" + deletePerson.id;  //request on the person's database ID
 
@@ -147,9 +145,9 @@ class App extends React.Component {
                 return Number(val.id) !== Number(deletePerson.id);  //take out the deleted person from the data array
             });
 
-            document.forms[0].names.value = "";  //set dropdown back to default (N/A)
+            document.forms[0].names.value = "-1";  //set dropdown back to default (N/A)
 
-            this.setState({data: deleteData, currentPerson: {name: "", idVal: "", points: "", id: ""}, error: ""});  //update state, unsetting the current person
+            this.setState({data: deleteData, currentPerson: {name: "", idVal: "", points: "", id: "-1"}, error: ""});  //update state, unsetting the current person
         },
         (error) => {
             this.setState({error: "Delete Person failed. " + error});
@@ -159,7 +157,7 @@ class App extends React.Component {
     render() {
         let names = [];
 
-        names.push(<option value="" key={0}>N/A</option>);
+        names.push(<option value="-1" key={0}>N/A</option>);
 
         for(let i = 0; i < this.state.data.length; i++)
         {
@@ -172,13 +170,15 @@ class App extends React.Component {
                 <Person 
                     value={{person: this.state.currentPerson, update: this.state.setCurrentPerson}}
                 />
-                <form className="app-vert-space">
-                    <label htmlFor="names" id="names" className="app-horiz-space">Person:</label>
-                    <select className="app-horiz-space" name="names">
-                        {names}
-                    </select>
+                <span>
+                    <form className="app-vert-space">
+                        <label htmlFor="names" id="names" className="app-horiz-space">Person:</label>
+                        <select className="app-horiz-space" name="names">
+                            {names}
+                        </select>
+                    </form>
                     <button className="app-horiz-space" onClick={() => this.getPerson()}>Get Person</button>
-                </form>
+                </span>
                 <div className="app-vert-space">
                     <button className="app-horiz-space" onClick={() => this.createPerson()}>Create Person</button>
                     <button className="app-horiz-space" onClick={() => this.updatePerson()}>Update Person</button>
