@@ -1,0 +1,13 @@
+.error {
+    color: red;
+}
+
+.app-vert-space {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.app-horiz-space {
+    margin-left: 5px;
+    margin-right: 5px;
+}

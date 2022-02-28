@@ -36,7 +36,7 @@ class App extends React.Component {
             this.setState({data: peopleData});  //add the data acquired, and add the names array
         },
         (error) => {
-            this.setState({error: "Database failed to respond. " + error})
+            this.setState({error: "Database failed to respond. " + error});
         });
     }
 
@@ -55,13 +55,17 @@ class App extends React.Component {
         }
 
         let found = {};
+        let errMsg = "";
 
         if (index < 0)
+        {
             found = {name: "", idVal: "", points: "", id: ""};  //if not found, fallback on empty person
+            errMsg = "Warning: Person not found.";
+        }
         else
             found = Object.assign({}, this.state.data[index]);  //if found, supply the data
 
-        this.setState({currentPerson: found, error: ""});  //update current person, which updates the Person class's input fields
+        this.setState({currentPerson: found, error: errMsg});  //update current person, which updates the Person class's input fields
     }
 
     createPerson() {
@@ -86,7 +90,7 @@ class App extends React.Component {
             document.forms[0].names.value = data.id;  //make sure the dropdown in the form is selecting the new item
         },
         (error) => {
-            this.setState({error: "Create Person failed. " + error})
+            this.setState({error: "Create Person failed. " + error});
         });
     }
 
@@ -128,6 +132,9 @@ class App extends React.Component {
 
     deletePerson()
     {
+        if (this.state.currentPerson.id == "")
+            this.getPerson();
+
         let deletePerson = this.state.currentPerson;
         let url = "http://localhost:3000/people/" + deletePerson.id;  //request on the person's database ID
 
@@ -165,16 +172,18 @@ class App extends React.Component {
                 <Person 
                     value={{person: this.state.currentPerson, update: this.state.setCurrentPerson}}
                 />
-                <form>
-                    <label htmlFor="names" id="names"></label>
-                    <select name="names">
+                <form className="app-vert-space">
+                    <label htmlFor="names" id="names" className="app-horiz-space">Person:</label>
+                    <select className="app-horiz-space" name="names">
                         {names}
                     </select>
+                    <button className="app-horiz-space" onClick={() => this.getPerson()}>Get Person</button>
                 </form>
-                <button onClick={() => this.getPerson()}>Get Person</button>
-                <button onClick={() => this.createPerson()}>Create Person</button>
-                <button onClick={() => this.updatePerson()}>Update Person</button>
-                <button onClick={() => this.deletePerson()}>Delete Person</button>
+                <div className="app-vert-space">
+                    <button className="app-horiz-space" onClick={() => this.createPerson()}>Create Person</button>
+                    <button className="app-horiz-space" onClick={() => this.updatePerson()}>Update Person</button>
+                    <button className="app-horiz-space" onClick={() => this.deletePerson()}>Delete Person</button>
+                </div>
                 <Error value={this.state.error} />
             </>
             )
@@ -239,7 +248,7 @@ class Person extends React.Component {
 class Error extends React.Component {
     render() {
         return (
-            <div>
+            <div className="error">
                 {this.props.value}
             </div>
         );
