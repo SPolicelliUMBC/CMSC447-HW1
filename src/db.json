@@ -1,0 +1,46 @@
+{
+  "people": [
+    {
+      "id": 211,
+      "name": "Steve Smith",
+      "idVal": "211",
+      "points": 80
+    },
+    {
+      "id": 122,
+      "name": "Jian Wong",
+      "idVal": "122",
+      "points": "9"
+    },
+    {
+      "name": "Chris Peterson",
+      "idVal": "213",
+      "points": "91",
+      "id": 213
+    },
+    {
+      "name": "Sai Patel",
+      "idVal": "524",
+      "points": "94",
+      "id": "524"
+    },
+    {
+      "name": "Andrew Whitehead",
+      "idVal": "425",
+      "points": "99",
+      "id": "425"
+    },
+    {
+      "name": "Lynn Roberts",
+      "idVal": "626",
+      "points": "90",
+      "id": "626"
+    },
+    {
+      "name": "Robert Sanders",
+      "idVal": "287",
+      "points": "75",
+      "id": "287"
+    }
+  ]
+}
