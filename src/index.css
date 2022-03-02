@@ -1,3 +1,8 @@
+body {
+    background: rgb(30, 30, 30);
+    color: lightgray;
+}
+
 .error {
     color: red;
 }
@@ -10,4 +15,40 @@
 .app-horiz-space {
     margin-left: 5px;
     margin-right: 5px;
+}
+
+table {
+    background-color: rgb(66, 66, 66);
+    border: 2px solid grey;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+input {
+    border: 2px solid grey;
+    border-radius: 5px;
+}
+
+select {
+    border: 2px solid grey;
+    border-radius: 5px;
+}
+
+button {
+    border: 2px solid grey;
+    border-radius: 5px;
+}
+
+.get-person {
+    border: 2px solid grey;
+    border-radius: 5px;
+    width: 310px;
+    margin-left: 10px;
+}
+
+.cr-up-de {
+    border: 2px solid grey;
+    border-radius: 5px;
+    width: 310px;
+    margin-left: 10px;
 }

@@ -170,19 +170,19 @@ class App extends React.Component {
                 <Person 
                     value={{person: this.state.currentPerson, update: this.state.setCurrentPerson}}
                 />
-                <span>
+                <div className="app-vert-space get-person">
                     <form className="app-vert-space">
                         <label htmlFor="names" id="names" className="app-horiz-space">Person:</label>
                         <select className="app-horiz-space" name="names">
                             {names}
                         </select>
                     </form>
-                    <button className="app-horiz-space" onClick={() => this.getPerson()}>Get Person</button>
-                </span>
-                <div className="app-vert-space">
-                    <button className="app-horiz-space" onClick={() => this.createPerson()}>Create Person</button>
-                    <button className="app-horiz-space" onClick={() => this.updatePerson()}>Update Person</button>
-                    <button className="app-horiz-space" onClick={() => this.deletePerson()}>Delete Person</button>
+                    <button className="app-horiz-space app-vert-space" onClick={() => this.getPerson()}>Get Person</button>
+                </div>
+                <div className="cr-up-de app-vert-space">
+                    <button className="app-vert-space app-horiz-space" onClick={() => this.createPerson()}>Create Person</button>
+                    <button className="app-vert-space app-horiz-space" onClick={() => this.updatePerson()}>Update Person</button>
+                    <button className="app-vert-space app-horiz-space" onClick={() => this.deletePerson()}>Delete Person</button>
                 </div>
                 <Error value={this.state.error} />
             </>
